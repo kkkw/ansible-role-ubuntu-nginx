@@ -7,13 +7,10 @@
   - name: add repository for nginx
     apt_repository: repo={{ item }}
     with_items:
-      - deb http://nginx.org/packages/ubuntu/ xenial nginx
-      - deb-src http://nginx.org/packages/ubuntu/ xenial nginx
-
-  - name: apt_get update for nginx
-    apt: update_cache=yes
+      - deb http://nginx.org/packages/ubuntu/ {{ ubuntu_nginx_ubuntu_codename }} nginx
+      - deb-src http://nginx.org/packages/ubuntu/ {{ ubuntu_nginx_ubuntu_codename }} nginx
 
   - name: install nginx with apt-get
-    apt: name=nginx={{ ubuntu_nginx_version }}~xenial
+    apt: name=nginx={{ ubuntu_nginx_version }} update_cache=yes
 
   become: True
