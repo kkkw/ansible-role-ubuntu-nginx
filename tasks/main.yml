@@ -1,0 +1,19 @@
+---
+# tasks file for ansible-role-ubuntu-nginx
+- block:
+  - name: add key for nginx
+    apt_key: url=http://nginx.org/keys/nginx_signing.key
+
+  - name: add repository for nginx
+    apt_repository: repo={{ item }}
+    with_items:
+      - deb http://nginx.org/packages/ubuntu/ xenial nginx
+      - deb-src http://nginx.org/packages/ubuntu/ xenial nginx
+
+  - name: apt_get update for nginx
+    apt: update_cache=yes
+
+  - name: install nginx with apt-get
+    apt: name=nginx={{ ubuntu_nginx_version }}~xenial
+
+  become: True

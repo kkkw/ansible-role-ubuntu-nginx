@@ -1,0 +1,3 @@
+---
+# defaults file for ansible-role-ubuntu-nginx
+ubuntu_nginx_version: 1.10.0-1
